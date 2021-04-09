@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="public_repos" translatable="false">Repositories</string>
+
+    <!--Bisa Ditranslate-->
+    <string name="followers">Followers</string>
+    <string name="following">Following</string>
+    <string name="search_hint">Search User</string>
+    <string name="not_found">User not Found</string>
+    <string name="not_have">%1$s Not Have %2$s</string>
+    <string name="language_settings">Change Language</string>
+    <!--Contoh -->
+    <string name="exp_username" translatable="false" >Username</string>
+    <string name="exp_name" translatable="false">Name</string>
+    <string name="exp_location" translatable="false">Location</string>
+    <string name="exp_company" translatable="false">Company</string>
+    <string name="exp_type" translatable="false">Type</string>
+    <string name="exp_publicRepos" translatable="false">0</string>
+    <string name="exp_followers" translatable="false">1</string>
+    <string name="exp_following" translatable="false">2</string>
+</resources>

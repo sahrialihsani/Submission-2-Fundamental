@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="data"
+            type="com.example.submission_2_fundamental.model.UserModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".main.fragment.FragmentDetail">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#20A1DD"
+            android:orientation="vertical"
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/detail_avatar"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="3dp"
+                android:layout_marginLeft="3dp"
+                android:contentDescription="@string/app_name"
+                app:avatar='@{data.avatar_url ?? "" }'
+                app:layout_constraintEnd_toStartOf="@id/detail_followers"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@drawable/logo" />
+
+            <TextView
+                android:id="@+id/detail_tipe"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="@{data.type}"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="@+id/detail_location"
+                app:layout_constraintHorizontal_bias="0.527"
+                app:layout_constraintStart_toStartOf="@+id/detail_location"
+                app:layout_constraintTop_toBottomOf="@+id/detail_location"
+                tools:text="@string/exp_type" />
+
+            <TextView
+                android:id="@+id/detail_company"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="@{data.company}"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="@+id/detail_location"
+                app:layout_constraintHorizontal_bias="0.527"
+                app:layout_constraintStart_toStartOf="@+id/detail_location"
+                app:layout_constraintTop_toBottomOf="@+id/detail_tipe"
+                tools:text="@string/exp_company" />
+
+            <TextView
+                android:id="@+id/detail_nama"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:gravity="center"
+                android:text="@{data.name??data.login}"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/detail_following"
+                app:layout_constraintHorizontal_bias="0.556"
+                app:layout_constraintStart_toStartOf="@+id/detail_followers"
+                app:layout_constraintTop_toBottomOf="@id/detail_avatar"
+                tools:text="@string/exp_name" />
+
+            <TextView
+                android:id="@+id/detail_location"
+                android:layout_width="0dp"
+                android:layout_height="27dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif-light"
+                android:gravity="center"
+                android:text="@{data.location}"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                android:visibility="@{data.location!=null? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/detail_nama"
+                app:layout_constraintHorizontal_bias="0.534"
+                app:layout_constraintStart_toStartOf="@+id/detail_nama"
+                app:layout_constraintTop_toBottomOf="@+id/detail_nama"
+                app:layout_constraintVertical_bias="0.0"
+                tools:text="@string/exp_location" />
+
+            <TextView
+                android:id="@+id/detail_followers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif-condensed"
+                android:text="@string/followers"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toStartOf="@id/details_repository"
+                app:layout_constraintStart_toEndOf="@id/detail_avatar"
+                app:layout_constraintTop_toBottomOf="@id/detail_follower" />
+
+            <TextView
+                android:id="@+id/detail_follower"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="@{String.valueOf(data.followers)}"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/detail_followers"
+                app:layout_constraintStart_toStartOf="@id/detail_followers"
+                app:layout_constraintTop_toTopOf="@id/detail_avatar"
+                tools:text="@string/exp_publicRepos" />
+            <!--Public Repos Configurations End-->
+
+            <!-- Followers Configurations-->
+            <TextView
+                android:id="@+id/details_repository"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif-condensed"
+                android:text="@string/public_repos"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toStartOf="@id/detail_following"
+                app:layout_constraintStart_toEndOf="@id/detail_followers"
+                app:layout_constraintTop_toBottomOf="@id/detail_repo" />
+
+            <!-- Followers Configurations End-->
+
+            <!-- Following Configurations-->
+            <TextView
+                android:id="@+id/detail_repo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="@{String.valueOf(data.public_repos)}"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/details_repository"
+                app:layout_constraintStart_toStartOf="@id/details_repository"
+                app:layout_constraintTop_toTopOf="@id/detail_follower"
+                tools:text="@string/exp_followers" />
+
+            <TextView
+                android:id="@+id/detail_following"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:fontFamily="sans-serif-condensed"
+                android:text="@string/following"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/details_repository"
+                app:layout_constraintTop_toBottomOf="@id/following_details" />
+
+            <TextView
+                android:id="@+id/following_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="@{String.valueOf(data.following)}"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/detail_following"
+                app:layout_constraintStart_toStartOf="@id/detail_following"
+                app:layout_constraintTop_toTopOf="@id/detail_repo"
+                tools:text="@string/exp_following" />
+            <!-- Following Configurations End-->
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#7DD1FF"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintlayout"
+            app:tabTextColor="#FFFFFF" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:background="#FFFFFF"
+            android:foregroundGravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tabs" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
